@@ -16,10 +16,10 @@ function sendAJAX(data, url, el, def){
         },
         type: 'GET',
         success: function (res) {
-            if(res == 'false' || res == ''){
+            if(res === 'false' || res === ''){
                 alert('Something gone wrong');
-            }else if(res == 'true'){
-                if((def == 'fal' && !$(el).hasClass('fas')) || def == 'far'){
+            }else if(res === 'true'){
+                if((!el.hasClass('fas') && def == 'fal') || def == 'far'){
                     el.toggleClass(`${def} fas`);
                 }
             }
@@ -102,6 +102,7 @@ function addScrollUpButton(){
             data.img = $(this).parents('.good').find('img').prop('src');
             data.price = $(this).parents('.good').find('.good-price').text();
             data.name = $(this).parents('.good').find('.good-descr p').text();
+            data.amount = 1;
             sendAJAX(JSON.stringify(data), '/shop/ajaxAddToCart/', $(e.target), 'fal');
         }
 
@@ -155,15 +156,16 @@ function addScrollUpButton(){
             },
             type: 'GET',
             success: function (res) {
-                if(res.includes('true/')){
-                    results = res.split('/');
+                let results = res.split('/');
+                if(res.includes('true')){
                     $('#content').find(`.container-good[data-id="${results[3]}"]`).remove();
-                    amount = parseInt($('#total-quantity').children('p:last-child').text());
-                    price = parseInt($('#total-sum').children('p:last-child').text().replace(' USD', ''));
-                    $('#total-quantity').children('p:last-child').text(amount - parseInt(results[2]));
-                    $('#total-sum').children('p:last-child').text((price - parseInt(results[1])) + ' USD');
+                    let amount = parseInt($('#total-quantity').children('p:last-child').text());
+                    let price = parseInt($('#total-sum').children('p:last-child').text().replace(' USD', ''));
+                    $('#total-quantity').children('p:last-child').text((amount - parseInt(results[2])));
+                    $('#total-sum').children('p:last-child').text((price - parseInt(results[1]) * parseInt(results[2])) + ' USD');
                     changeCartButtonsClasses(results[3]);
-                }else if(res == 'clear'){
+                }else if(res.includes('clear')){
+                    changeCartButtonsClasses(results[1]);
                     $('#content').html('<h3>Your cart is empty(</h3>');
                     $('#cart-buttons').html('<a id="continue-shopping-empty">Continue shopping</a>')
                 }
@@ -178,6 +180,11 @@ function addScrollUpButton(){
         e.preventDefault();
         $this = e.target;
         $($this).parent().next().toggleClass('active-modal disactive-modal');
+    })
+
+    $('#main').on('click', '#buy', function(e){
+        e.preventDefault();
+        console.log($('input[type="number"]').val())
     })
 }
 

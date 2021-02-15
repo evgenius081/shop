@@ -107,15 +107,14 @@ class Shop extends \core\Controller{
         $productData = json_decode($_GET['data']);
         $productPrice = str_replace(' USD', '', $productData->price)*1;
         if(isset($_SESSION['cart']) && $_SESSION['cart'] == 'active'){
-            $_SESSION['totalQuantity']++;
-            $_SESSION['totalSum']+=$productPrice;
+            $_SESSION['totalQuantity']+= $productData->amount;
+            $_SESSION['totalSum']+=$productPrice * $productData->amount;
             $id = $productData->id;
             if(in_array($id, json_decode($_SESSION['IDs']))){
                 $products = json_decode($_SESSION['products']);
-                ++$products->$id->amount;
+                $products->$id->amount += $productData->amount;
                 $_SESSION['products'] = json_encode($products);
             }else{
-                $productData->amount = 1;
                 $ids = json_decode($_SESSION['IDs']);
                 $ids[] = $id;
                 $_SESSION['IDs'] = json_encode($ids);
@@ -124,10 +123,9 @@ class Shop extends \core\Controller{
                 $_SESSION['products'] = json_encode($products);
             }
         }else{
-            $productData->amount = 1;
             $_SESSION['cart'] = 'active';
-            $_SESSION['totalQuantity'] = 1;
-            $_SESSION['totalSum'] = $productPrice;
+            $_SESSION['totalQuantity'] = $productData->amount;
+            $_SESSION['totalSum'] = $productPrice * $productData->amount;
             $_SESSION['products'] = json_encode([$productData->id => $productData]);
             $_SESSION['IDs'] = json_encode([$productData->id]);
         }
@@ -154,7 +152,7 @@ class Shop extends \core\Controller{
             unset($_SESSION['products']);
             unset($_SESSION['IDs']);
             unset($_SESSION['cart']);
-            echo 'clear';
+            echo 'clear/'.$_GET['data']*1;
         }
 
     }

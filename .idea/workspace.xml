@@ -41,6 +41,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -64,7 +65,7 @@
       <workItem from="1612554181224" duration="19429000" />
       <workItem from="1612636852233" duration="29544000" />
       <workItem from="1612870713121" duration="39869000" />
-      <workItem from="1613205707103" duration="26126000" />
+      <workItem from="1613205707103" duration="31189000" />
     </task>
     <servers />
   </component>
