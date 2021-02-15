@@ -104,6 +104,8 @@ main{
 
 #good-amount{
     display: flex;
+    margin-right: auto;
+    margin-left: 20px;
 }
 
 input::-webkit-outer-spin-button,
@@ -120,9 +122,9 @@ input::-webkit-inner-spin-button {
 }
 
 #good-order>div{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display:flex;
+    align-items: center;
+    width: 100%;
 }
 
 #amount-field{
@@ -151,6 +153,10 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
     text-align: center;
     line-height: 28px;
+}
+
+.add-to-chosen-button i{
+    cursor: pointer;
 }
 
 .wishlist{

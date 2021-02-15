@@ -105,6 +105,7 @@ class Shop extends \core\Controller{
 
     public function ajaxAddToCart(){
         $productData = json_decode($_GET['data']);
+        var_dump($productData);
         $productPrice = str_replace(' USD', '', $productData->price)*1;
         if(isset($_SESSION['cart']) && $_SESSION['cart'] == 'active'){
             $_SESSION['totalQuantity']+= $productData->amount;
@@ -129,18 +130,17 @@ class Shop extends \core\Controller{
             $_SESSION['products'] = json_encode([$productData->id => $productData]);
             $_SESSION['IDs'] = json_encode([$productData->id]);
         }
-        echo 'true';
     }
 
     public function ajaxDeleteFromCart(){
-        if($_SESSION['totalQuantity'] != 1){
-            $id = $_GET['data']*1;
-            $IDs = json_encode($_SESSION['IDs']);
-            array_splice($IDs, array_search($id, $IDs), 1);
-            $_SESSION['IDs'] = json_encode($IDs);
-            $products = json_decode($_SESSION['products']);
-            $price = str_replace(' USD', '', $products->$id->price);
-            $amount = $products->$id->amount;
+        $id = $_GET['data']*1;
+        $IDs = json_encode($_SESSION['IDs']);
+        array_splice($IDs, array_search($id, $IDs), 1);
+        $_SESSION['IDs'] = json_encode($IDs);
+        $products = json_decode($_SESSION['products']);
+        $price = str_replace(' USD', '', $products->$id->price);
+        $amount = $products->$id->amount;
+        if($_SESSION['totalQuantity'] != $amount){
             $_SESSION['totalSum']-=$price*$amount;
             $_SESSION['totalQuantity']-=$amount;
             unset($products->$id);

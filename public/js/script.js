@@ -82,7 +82,7 @@ function addScrollUpButton(){
         $('#main #scroll-up-button').css('display', 'none');
     }
 
-    $('#goods').on('click', '.fa-heart' ,(function (e){
+    $('#main').on('click', '.fa-heart' ,(function (e){
         if(typeof $(e.target).parent().data('id') != 'undefined'){
             let url = '/shop/ajax';
             if($(e.target).attr('class').includes('far')){
@@ -184,7 +184,32 @@ function addScrollUpButton(){
 
     $('#main').on('click', '#buy', function(e){
         e.preventDefault();
-        console.log($('input[type="number"]').val())
+        let data = {}
+        data.id = $(e.target).data('id');
+        data.img = $(this).parents('#main').find('img').prop('src').replace('mini_', '');
+        data.price = $(this).parents('#main').find('#current-price').text().replace('Price: ', '');
+        data.name = $(this).parents('#main').find('h1').text();
+        data.amount = $('input[type="number"]').val();
+        $.ajax({
+            url: '/shop/ajaxAddToCart/',
+            data: {
+                data : JSON.stringify(data),
+            },
+            type: 'GET',
+            success: function () {
+                $('#buy').text('ADDED');
+                $('#input[type="number"]').val(1);
+                let text = $('#good-amount').html();
+                $('#good-amount').remove();
+                setTimeout(function(){
+                    $('#buy').text('ADD MORE');
+                    $('#buy').after(`<div id="good-amount">${text}</div>`);
+                }, 3000)
+            },
+            error: function () {
+                alert('Something bad happened, I can feel it')
+            }
+        })
     })
 }
 
