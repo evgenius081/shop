@@ -6,6 +6,9 @@ function changeCartButtonsClasses(id = -1){
             $(this).find('.fa-shopping-cart').toggleClass('fas fal');
         }
     })
+    if($('#buy').length != 0){
+        $('#buy').text('BUY');
+    }
 }
 
 function sendAJAX(data, url, el, def){
@@ -95,7 +98,7 @@ function addScrollUpButton(){
 
     }))
 
-    $('#goods').on('click', '.fa-shopping-cart' ,(function (e){
+    $('#main').on('click', '.fa-shopping-cart' ,(function (e){
         if(typeof $(e.target).parent().data('id') != 'undefined'){
             data = {}
             data.id = $(e.target).parent().data('id');
@@ -131,7 +134,7 @@ function addScrollUpButton(){
                 if(res == 'true'){
                     $('#content').html('<h3>Your cart is empty(</h3>');
                     $('#cart-buttons').html('<a id="continue-shopping-empty">Continue shopping</a>')
-                    changeCartButtonsClasses()
+                    changeCartButtonsClasses();
                 }else{
                     alert('Something gone wrong');
                 }
@@ -210,6 +213,12 @@ function addScrollUpButton(){
                 alert('Something bad happened, I can feel it')
             }
         })
+    })
+
+    $('body').click(function (e){
+        if($('#user-modal').hasClass('active-modal') && !$(e.target).hasClass('fa-user')){
+            $('#user-modal').toggleClass('active-modal disactive-modal');
+        }
     })
 }
 

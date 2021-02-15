@@ -155,6 +155,10 @@ input::-webkit-inner-spin-button {
     line-height: 28px;
 }
 
+.add-to-chosen-button{
+    margin-left: auto;
+}
+
 .add-to-chosen-button i{
     cursor: pointer;
 }
