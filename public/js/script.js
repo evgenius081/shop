@@ -84,7 +84,10 @@ function addScrollUpButton(){
     }else if($('#main #scroll-up-button').length){
         $('#main #scroll-up-button').css('display', 'none');
     }
+}
 
+$(window).load(function() {
+    addScrollUpButton();
     $('#main').on('click', '.fa-heart' ,(function (e){
         if(typeof $(e.target).parent().data('id') != 'undefined'){
             let url = '/shop/ajax';
@@ -220,10 +223,7 @@ function addScrollUpButton(){
             $('#user-modal').toggleClass('active-modal disactive-modal');
         }
     })
-}
 
-$(window).load(function() {
-    addScrollUpButton();
     window.onresize = function(){
         addScrollUpButton();
     }

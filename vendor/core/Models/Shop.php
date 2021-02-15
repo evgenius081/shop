@@ -20,4 +20,10 @@ class Shop extends \core\Model{
         $products = $db->table('products_en')->where($columns, "%", $values)->getSome();
         return $products;
     }
+
+    public function getFiletrs(){
+        $db = $this->setInstance();
+        $filters = $db->table('filters_en')->from('*')->getSome();
+        return $filters;
+    }
 }

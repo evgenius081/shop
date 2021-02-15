@@ -124,6 +124,11 @@ nav{
     line-height: 36px;
 }
 
+#shopping-cart:active{
+    font-size: 40px;
+    transition: all 0.2s ease;
+}
+
 #shopping-cart i {
     line-height: 36px;
     font-size: 36px;

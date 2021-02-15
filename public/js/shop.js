@@ -110,23 +110,23 @@ $(".more").click(function () {
 });
 
 $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 4000,
-        values: [0, 4000],
-        slide: function (event, ui) {
-            $("#min-amount").val(ui.values[0]);
-            $("#max-amount").val(ui.values[1]);
-        }
-    });
+    range: true,
+    min: $('#min-amount').prop('min'),
+    max: parseInt($('#max-amount').prop('max'))/10,
+    values: [$('#min-amount').prop('min'), $('#max-amount').prop('max')],
+    slide: function (event, ui) {
+        $("#min-amount").val(ui.values[0]);
+        $("#max-amount").val(ui.values[1]);
+    }
+});
     $("#min-amount").val($("#slider-range").slider("values", 0));
     $("#max-amount").val($("#slider-range").slider("values", 1));
 
     $('#min-amount').keyup(function () {
         $("#slider-range").slider({
             range: true,
-            min: 0,
-            max: 4000,
+            min: $('#min-amount').prop('min'),
+            max: parseInt($('#max-amount').prop('max'))/10,
             values: [$("#min-amount").val(), $("#max-amount").val()],
             slide: function (event, ui) {
                 $("#min-amount").val(ui.values[0]);
@@ -138,8 +138,8 @@ $("#slider-range").slider({
     $('#max-amount').keyup(function () {
         $("#slider-range").slider({
             range: true,
-            min: 0,
-            max: 4000,
+            min: $('#min-amount').prop('min'),
+            max: parseInt($('#max-amount').prop('max'))/10,
             values: [$("#min-amount").val(), $("#max-amount").val()],
             slide: function (event, ui) {
                 $("#min-amount").val(ui.values[0]);
@@ -197,14 +197,14 @@ $('#aside-buttons button:first-child').click(function(e){
     $('#filters')[0].reset();
     $("#slider-range").slider({
         range: true,
-        min: 0,
-        max: 4000,
-        values: [0, 4000],
+        min: $('#min-amount').prop('min'),
+        max: parseInt($('#max-amount').prop('max'))/10,
+        values: [$('#min-amount').prop('min'), $('#max-amount').prop('max')],
         slide: function (event, ui) {
             $("#min-amount").val(ui.values[0]);
             $("#max-amount").val(ui.values[1]);
         }
     });
-    $("#min-amount").val(0);
-    $("#max-amount").val(4000);
+    $("#min-amount").val($('#min-amount').prop('min'));
+    $("#max-amount").val($('#max-amount').prop('max'));
 })

@@ -9,8 +9,9 @@ class Shop extends \core\Controller{
         $products = $shop->getSomeProducts(12);
         $chosenIDs = $this->getChosenProductsIDs();
         $cartIDs = $this->getCartProductsIDs();
+        $filters = $this->getFilters();
         $text = $this->view('parts/prod', ['0' => $products, 'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
-        $this->view('shop', ['products' => $text]);
+        $this->view('shop', ['products' => $text, 'filters' => $filters]);
     }
 
     public function product($params){
@@ -35,6 +36,11 @@ class Shop extends \core\Controller{
         if(isset($_SESSION['cart']) && $_SESSION['cart'] != NULL){
             return json_decode($_SESSION['IDs']);
         }
+    }
+
+    public function getFilters(){
+        $shop = new \core\Models\Shop();
+        return $shop->getFiletrs();
     }
 
     public function ajaxFilters(){
@@ -105,7 +111,6 @@ class Shop extends \core\Controller{
 
     public function ajaxAddToCart(){
         $productData = json_decode($_GET['data']);
-        var_dump($productData);
         $productPrice = str_replace(' USD', '', $productData->price)*1;
         if(isset($_SESSION['cart']) && $_SESSION['cart'] == 'active'){
             $_SESSION['totalQuantity']+= $productData->amount;
@@ -130,6 +135,7 @@ class Shop extends \core\Controller{
             $_SESSION['products'] = json_encode([$productData->id => $productData]);
             $_SESSION['IDs'] = json_encode([$productData->id]);
         }
+        echo 'true';
     }
 
     public function ajaxDeleteFromCart(){
