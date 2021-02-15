@@ -1,0 +1,15 @@
+{
+    "name": "vormir",
+    "description": "Engine",  
+    "require": {
+        "psr/log": "~1.0",
+        "illuminate/database": "5.2.*",
+        "ext-pdo": "*",
+      "ext-mysqli": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "vendor/core/"
+        }
+    }
+}

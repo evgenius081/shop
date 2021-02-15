@@ -1,0 +1,94 @@
+main{
+    width: 83.6%;
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+}
+
+main iframe, noscript{
+    width: 50%;
+    height: 41.8vw;
+    display: block;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+noscript img{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 100%;
+    height: 41.8vw;
+}
+
+#contacts-container{
+    width: 50%;
+    height: 41.8vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#contacts-container h2{
+    font-size: 32px;
+}
+
+#contacts-container ul{
+    list-style-type: none;
+    margin-top: 20px
+}
+
+#contacts-container ul li{
+    margin: 20px 0;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+#contacts-container ul li *{
+    display: block;
+}
+
+#contacts-container ul li i{
+    margin-right: 20px;
+}
+
+#contacts-container ul li a{
+    color: #ffa000;
+    text-decoration: none;
+}
+
+#contacts-container ul li a:hover{
+    color: #c67100;
+    transition: all ease 0.4s;
+}
+
+.simplebar-placeholder{
+    display: none;
+}
+
+@media screen and (max-width: 960px){
+    main{
+        padding: 40px 0;
+    }
+
+    #contacts-container{
+        padding: 0 10px;
+    }
+}
+
+@media screen and (max-width: 860px){
+    main{
+        flex-direction: column;
+    }
+
+    main iframe, #contacts-container, noscript, noscript img{
+        width: 100%;
+        height: 83.6vw;
+    }
+
+    noscript img, main iframe{
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 8px;
+    }
+}

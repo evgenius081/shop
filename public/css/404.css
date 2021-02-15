@@ -1,0 +1,15 @@
+main{
+    width: 270px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+main *{
+    display: block;
+    font-family:Roboto-Regular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;;
+}

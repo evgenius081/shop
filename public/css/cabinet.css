@@ -1,0 +1,148 @@
+header{
+    margin-top: 100px;
+    text-align: center;
+}
+
+#main{
+    width: 83.6%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logout{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logout-a {
+    display: block;
+    text-decoration: none;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#logout-a:hover{
+    transition: all ease 0.4s;
+    color: #000;
+    background-color: #fff;
+}
+
+.heart-container{
+    margin-right: auto;
+    margin-left: 8px;
+    margin-bottom: 8px; 
+}
+
+.favourites{
+    width: 0;
+}
+
+.image-info{
+    width: 200px;
+    height: 125px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    top: 50%;
+    opacity: 0;
+    text-decoration: none;
+}
+
+.image-text{
+    margin-top: 30px;
+}
+
+.image-info p{
+    display: block;
+}
+
+.image-title{
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-family: Roboto-Thin;
+}
+
+.image-author{
+    font-size: 12px;
+}
+
+.favourite-item img{
+    width: 200px;
+    height: 125px;
+    cursor: pointer;
+}
+
+.favourite-item:hover .image-info{
+    top: 0;
+    opacity: 100%;
+    transition: all ease 0.3s;
+}
+
+.favourite-item{
+    height: 125px;
+    margin: 5px;
+    position: relative;
+}
+
+#favourite-images{
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 30px; 
+    margin-left: -5px;
+    text-align: center;
+}
+
+#favourite-images-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#favourite-images-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#delete-chosen{
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #000;
+    margin-top: 60px;
+    font-size: 18px;
+}
+
+#delete-chosen:hover{
+    transition: all ease 0.4s;
+    background-color: #fff;
+    color: #000;
+}

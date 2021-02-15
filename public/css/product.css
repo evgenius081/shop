@@ -1,0 +1,252 @@
+main{
+    width: 83.6%;
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#good-photo{
+    width: 50%;
+}
+
+#good-photo img{
+    width: 100%;
+    height: 100%;
+}
+
+#good-characteristics{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 2px solid #e0e0e0;
+    padding-left: 20px;
+    height: auto;
+    padding-bottom: 20px;
+}
+
+#good-characteristics h1{
+    font-size: 32px;
+    margin-bottom: 2em;
+}
+
+#good-characteristics ul{
+    list-style-type: none;
+    line-height: 1.6em;
+    font-size: 20px;
+}
+
+#good-characteristics ul li{
+    text-align: right;
+    display: flex;
+}
+
+#good-characteristics ul li span{
+    margin-right: auto;
+    color: #9e9e9e;
+    text-align: left;
+}
+
+#good-characteristics > p, #price span{
+    display: block;
+    margin: 3em 0;
+    font-size: 24px;
+    margin-right: 40px
+}
+
+#price{
+    display: flex;
+    align-items: center;
+}
+
+#old-price{
+    color: #777;
+    font-size: 18px;
+    position: relative;
+}
+
+#old-price::after{
+    content: '';
+    position: absolute;
+    top: 43%;
+    left: -2px;
+    width: 80%;
+    height: 2px;
+    background: #f44336;
+    transform: rotate(-7deg);
+}
+
+#new-price{
+    font-size: 24px;
+}
+
+#buy{
+    font-size: 32px;
+    width: 230px;
+    height: 60px;
+    border: 1px solid #000;
+    background: #000;
+    border-radius: 6px;
+    padding: 5px 10px;
+    color: #fff;
+    margin-right: 20px;
+}
+
+#buy:hover{
+    background-color: #fff;
+    color: #000;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+#good-amount{
+    display: flex;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#good-order{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#good-order>div{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#amount-field{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 0;
+    border: 1px solid #000;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+#amount-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#amount-plus, #amount-minus{
+    margin-left: 4px;
+    background: #fff;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #000;
+    cursor: pointer;
+    text-align: center;
+    line-height: 28px;
+}
+
+.wishlist{
+    background: none;
+    cursor: pointer;
+}
+
+#amount-plus{
+    border-top-right-radius: 8px;
+}
+
+#amount-minus{
+    border-bottom-right-radius: 8px;
+}
+
+#good-description{
+    padding-top: 3em;
+    border-top: 2px solid #e0e0e0;
+    font-size: 18px;
+}
+
+#good-description p{
+    margin-bottom: 2em;
+}
+
+#good-description ul{
+    margin-top: -1.5em;
+}
+
+#good-description ul li{
+    line-height: 1.4em;
+    margin-left: 40px
+}
+
+.simplebar-placeholder{
+    display: none;
+}
+
+@media screen and (max-width: 970px){
+    #good-photo{
+        width: 100%;
+    }
+
+    #good-characteristics{
+        width: 100%;
+        border-left: none;
+        border-top: 2px solid #e0e0e0;
+        padding-top: 20px
+    }
+}
+
+@media screen and (max-width: 970px){
+    main{
+        padding: 40px 0;
+    }
+}
+
+@media screen and (max-width: 550px){
+    #buy{
+        font-size: 24px;
+        width: 180px
+    }
+}
+
+@media screen and (max-width: 480px){
+    #buy{
+        font-size: 20px;
+        width: 150px
+    }
+}
+
+@media screen and (max-width: 450px){
+    #buy{
+        font-size: 18px;
+        width: 120px
+    }
+}
+
+@media screen and (max-width: 410px){
+    #buy{
+        font-size: 16px;
+        width: 110px;
+        height: 40px;
+    }
+
+    #amount-field{
+        width: 40px;
+        height: 40px;
+    }
+
+    #amount-plus, #amount-minus{
+        height: 18px;
+        width: 18px;
+    }
+
+    #wishlist i{
+        font-size: 40px;
+    }
+}
