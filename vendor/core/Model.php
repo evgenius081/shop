@@ -53,14 +53,19 @@ class Model{
         return $this;
     }
 
-    public function where($col, $char, $params){
+    public function where($col, $char, $params, $or = ''){
         $this->where=' WHERE ';
         if($char == "="){
             foreach($col as $c => $value){
                 if($c == count($col) - 1){
-                    $this->where .= $value.$char.'"'.$params[0]. '"';
+                    $this->where .= $value.$char.'"'.$params[$c]. '"';
                 }else{
-                    $this->where .= $value.$char.'"'.$params[0]. '" AND ';
+                    $this->where .= $value.$char.'"'.$params[$c];
+                    if($or == ''){
+                        $this->where .= '" AND ';
+                    }else{
+                        $this->where .= '" OR ';
+                    }
                 }
             }
         }else if($char == "%"){

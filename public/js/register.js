@@ -1,4 +1,4 @@
-canRegister= [0,0,0,0];
+canRegister= [0,0,0,0,0];
 function minus(id){
     if(canRegister[id] != 0){
         canRegister[id] = 0;
@@ -76,5 +76,17 @@ $('#reg-login').keyup(function(e){
         $('#reg-login').css('border-color', 'rgba(255, 255, 255, 0.23) rgba(255, 255, 255, 0.23) rgb(124, 179, 66)');
         $('#reg-login').css('border-bottom', '2px solid rgb(124, 179, 66)');
         plus(3);
+    }
+});
+
+$('#reg-phone').keyup(function(e){
+    if(!this.value.match('[+]*[0-9]')){
+        $('#reg-phone').css('border-bottom', '3px solid #c62828');
+        $('#reg-phone').attr('title', 'Too short login');
+        minus(4);
+    }else{
+        $('#reg-phone').css('border-color', 'rgba(255, 255, 255, 0.23) rgba(255, 255, 255, 0.23) rgb(124, 179, 66)');
+        $('#reg-phone').css('border-bottom', '2px solid rgb(124, 179, 66)');
+        plus(4);
     }
 });

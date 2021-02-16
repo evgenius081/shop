@@ -4,8 +4,10 @@ namespace core\Models;
 
 class User extends \core\Model{
 
-    const USER_NAME_CAN_BE_USED = 0;
+    const USER_DATA_CAN_BE_USED = 0;
     const USER_NAME_IS_ENGAED = 1;
+    const USER_EMAIL_IS_ALREADY_REGISTERED = 2;
+    const USER_PHONE_IS_ALREADY_REGISTERED = 3;
 
     public function getUserInfo($login){
         $db = $this->setInstance();
@@ -33,20 +35,32 @@ class User extends \core\Model{
         unset($_SESSION['creator']);
     }
 
-    public function checkUserName($userLogin){
+    public function checkUserData($userLogin, $userEmail, $userPhone){
         $db = $this->setInstance();
-        $results = $db->table('wp_users')->where(['user_login'], '=', [$userLogin])->getSome()[0];
+        $results = $db->table('wp_users')->where(['user_login', 'user_email', 'user_phone'], '=', [$userLogin, $userEmail,$userPhone], 'OR')->getSome();
         if(empty($results)){
-            return self::USER_NAME_CAN_BE_USED;
+            return self::USER_DATA_CAN_BE_USED;
         }else{
-            return self::USER_NAME_IS_ENGAED;
+            $resopnd = '';
+            foreach ($results as $person){
+                if(in_array($userLogin, $person)){
+                    $respond .= self::USER_NAME_IS_ENGAED;
+                }
+                if(in_array($userEmail, $person)){
+                    $respond .= self::USER_EMAIL_IS_ALREADY_REGISTERED;
+                }
+                if(in_array($userPhone, $person)){
+                    $respond .= self::USER_PHONE_IS_ALREADY_REGISTERED;
+                }
+            }
+            return $respond;
         }
     }
 
     public function register($person){
         $db = $this->setInstance();
-        $registeredUserID = $db->table('wp_users')->from('(ID, user_login, user_pass, user_nicename, user_email, user_url, user_registered, user_activation_key, user_status, display_name)')->set([null, $person["login"], $person["password"], $person["login"], $person["email"], "", date("Y-m-d H:i:s"), "", 0, $person["login"]]);
-        if(registeredUserID){
+        $registeredUserID = $db->table('wp_users')->from('(ID, user_login, user_pass, user_nicename, user_email, user_phone, user_url, user_registered, user_activation_key, user_status, display_name)')->set([null, $person["login"], $person["password"], $person["login"], $person["email"], $person['phone'], "", date("Y-m-d H:i:s"), "", 0, $person["login"]]);
+        if($registeredUserID){
             return $registeredUserID;
         }else{
             return 0;

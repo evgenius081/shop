@@ -24,8 +24,8 @@
         }?></title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/fontawesome-pro-5.13.0-web/css/all.min.css">
-    <?= $this->var['view_name'] == 'shop' ? '    <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+    <?= $this->var['view_name'] == 'shop' ? '    
+    <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.css">' : "" ?>
     <?php if($this->var['view_name'] != '404' || $this->var['view_name'] != 'register'):?>
@@ -56,9 +56,6 @@
                     </li>
                     <li class="menu-item">
                         <a href="/contacts">Contacts</a>
-                    </li>
-                    <li class='top-nav-menu-item login' id='menu-login'>
-                        <a href='/<?= isset($_SESSION['token']) ? 'cabinet' : 'login'?>'><i class='<?= isset($_SESSION['token']) ? 'fas' : 'fal'?> fa-user'></i></a>
                     </li>
                 </ul>
             </li>

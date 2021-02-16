@@ -565,7 +565,6 @@ footer{
 .modal{
     position: fixed; 
     display: flex;
-	bottom: 30px; 
 	left: 8.2%; 
 	width: 83.6%; 
 	color: #fff; 
@@ -611,18 +610,6 @@ footer{
         margin-left: 0;
     }
 
-    .top-nav-menu-item:not([id]), #actual-page{
-        display: none;
-    }
-
-    .menu-btn{
-        display: flex;     
-    }
-
-    #hamburger-menu{
-        display: flex;     
-    }
-
     main{
         width: 100%;
         margin: 0;
@@ -632,10 +619,6 @@ footer{
 
     #main #goods{
         grid-template-columns: repeat(3, 1fr);
-    }
-
-    #login{
-        display: none;
     }
 }
 
@@ -708,6 +691,19 @@ footer{
 }
 
 @media screen and (max-width: 580px){
+
+    .top-nav-menu-item:not([id]), #actual-page{
+        display: none;
+    }
+
+    .menu-btn{
+        display: flex;
+    }
+
+
+    #hamburger-menu{
+        display: flex;
+    }
     #cart-wrapper table th:first-child{
         width: 70%
     }

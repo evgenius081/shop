@@ -44,7 +44,7 @@
     <script src="/js/slider.js"></script>
 <?php endif;?>
     <script src="/js/script.js"></script>
-<?php if($this->var['view_name'] != '404' && $this->var['view_name'] != 'about' && $this->var['view_name'] != 'login' && $this->var['view_name'] != 'register'){
+<?php if($this->var['view_name'] != '404' && $this->var['view_name'] != 'about' && $this->var['view_name'] != 'login'){
     echo '<script src="/js/'.$this->var['view_name'].'.js"></script>';
 }?>
 </body>

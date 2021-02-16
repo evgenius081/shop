@@ -38,15 +38,17 @@ class User extends \core\Controller{
     public function register(){
         $person = new \core\Models\User();
         if(isset($_POST["signin"])){
-            $respond = $person->checkUserName($_POST['userlogin']);
-            if($respond == 0){
+            $respond = $person->checkUserData($_POST['userlogin'], $_POST['email'], $_POST['phone']);
+            if($respond === 0){
                 $userName = $_POST['userlogin'];
                 $userEmail = $_POST['email'];
+                $userPhone = $_POST['phone'];
                 $userPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $user=[
-                    'login' => $userName, 
+                    'login' => $userName,
                     'email' => $userEmail,
-                    'password' => $userPassword 
+                    'password' => $userPassword,
+                    'phone' => $userPhone
                 ];
                 $id = $person->register($user);
                 if($id != 0){
@@ -60,7 +62,15 @@ class User extends \core\Controller{
                 }
             }else{
                 $this->view('register');
-                echo "<div class='modal'><p>This login is engaged. Try another one</p><i class='fal fa-times fa-2x'></i></div>";
+                if(strpos($respond, '1') !== false){
+                    echo "<div class='modal'><p>This login is engaged. Try another one</p><i class='fal fa-times fa-2x'></i></div>";
+                }
+                if(strpos($respond, '2') !== false){
+                    echo "<div class='modal'><p>This email is engaged. Try another one</p><i class='fal fa-times fa-2x'></i></div>";
+                }
+                if(strpos($respond, '3') !== false){
+                    echo "<div class='modal'><p>This phone is engaged. Try another one</p><i class='fal fa-times fa-2x'></i></div>";
+                }
                 die();
             }
         }else{

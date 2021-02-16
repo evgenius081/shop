@@ -32,10 +32,6 @@
     right: 8.2vw
 }
 
-.form-container a{
-    z-index: 3;
-}
-
 .form-container form{
     display: flex;     
     flex-direction: column;

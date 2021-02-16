@@ -13,6 +13,11 @@
                         <span class="icon"><i class="fal fa-envelope"></i></span>
                         <span class="label">Email</span>
                     </label>
+                    <label for="email">
+                        <input type="text" class="phone" name="phone" id="reg-phone" required>
+                        <span class="icon"><i class="fas fa-phone"></i></span>
+                        <span class="label">Phone</span>
+                    </label>
                     <label for="password">
                         <input type="password" id="reg-password" class="password" name="password" required>
                         <span class="icon"><i class="fa fa-lock"></i></span>    

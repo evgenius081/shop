@@ -224,6 +224,17 @@ $(window).load(function() {
         }
     })
 
+    $('body').on('click', '.modal', function(e){
+        $(e.target).parent().remove();
+    })
+
+    $modals = $('.modal');
+    for(let i = 0; i<$modals.length; i++){
+        let bottom = i*80 + 20;
+        console.log($($modals[i]))
+        $($modals[i]).attr('style', `bottom: ${bottom}px`)
+    }
+
     window.onresize = function(){
         addScrollUpButton();
     }
