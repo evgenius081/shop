@@ -75,6 +75,13 @@ class Model{
                     if($params['price'][2] == 'discount'){
                         $this->where .= ' AND old_price > 0 ';
                     }
+                }else if($value == 'sort'){
+                    $this->where = substr($this->where, 0, -4);
+                    if(isset($params['order'])){
+                        $sort = explode('/', $params['order'][0]);
+                        $this->where .= " ORDER BY ".$sort[1].' '.$sort[0];
+                    }
+                    $this->where .= ' LIMIT '.$params['limit'][0];
                 }else{
                     if(count(array_filter(array_keys($params), 'is_string')) > 0){
                         for($i = 0; $i< count($params[$value]); $i++) {

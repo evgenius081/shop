@@ -1,105 +1,9 @@
-const goods = $('.good').toArray();
-var displayedGoogs = goods.slice();
-
-const starterDisplayedGoodsNumber = 12;
-
-function leaveGoods(n){
-    if(parseInt(n)){
-        $('#goods').empty();
-        if(parseInt(n) < displayedGoogs.length){
-            displayedGoogs.splice(parseInt(n)-1, displayedGoogs.length - parseInt(n));
-        }else{
-            displayedGoogs.push(goods.slice(displayedGoogs.length - 1, parseInt(n) - 1));
-        }
-        for(let i  = 0; i < displayedGoogs.length + 1; i++){
-            $(displayedGoogs[i]).appendTo('#goods');
-        }
-    }else if(!n){
-        $('#goods').empty();
-    }
-}
-
-function sortGoods(str){
-    $('#goods').empty();
-    let prices = [];
-    let names = [];
-    switch (str){
-        case 'A - Z':
-            for(i = 0; i < displayedGoogs.length; i++){
-                names[i] = $(displayedGoogs[i]).children('.good-descr').children('p').text();
-            }
-            names.sort();
-            for(i = 0; i < displayedGoogs.length; i++){
-                for(j = 0; j < displayedGoogs.length; j++){
-                    if(names[i] == $(displayedGoogs[j]).children('.good-descr').children('p').text()){
-                        $(displayedGoogs[j]).appendTo('#goods');
-                    }
-                }
-            }
-            break;
-        case 'Z - A':
-            for(i = 0; i < displayedGoogs.length; i++){
-                names[i] = $(displayedGoogs[i]).children('.good-descr').children('p').text();
-            }
-            names.sort();
-            names.reverse();
-            for(i = 0; i < displayedGoogs.length; i++){
-                for(j = 0; j < displayedGoogs.length; j++){
-                    if(names[i] == $(displayedGoogs[j]).children('.good-descr').children('p').text()){
-                        $(displayedGoogs[j]).appendTo('#goods');
-                    }
-                }
-            }
-            break;
-        case "Expensive":
-            for(i = 0; i < displayedGoogs.length; i++){
-                prices[i] = parseInt($(displayedGoogs[i]).children('.good-price').text().split(' ')[0]) ? parseInt($(displayedGoogs[i]).children('.good-price').text().split(' ')[0]) : parseInt($(displayedGoogs[i]).children().children('.good-price').text().split(' ')[0]);
-            }
-            prices.sort(function(a, b){return b - a});
-            for(i = 0; i < displayedGoogs.length; i++){
-                for(j = 0; j < displayedGoogs.length; j++){
-                    if(prices[i] == parseInt($(displayedGoogs[j]).children('.good-price').text().split(' ')[0]) || prices[i] == parseInt($(displayedGoogs[j]).children().children('.good-price').text().split(' ')[0])){
-                        $(displayedGoogs[j]).appendTo('#goods');
-                    }
-                }
-            }
-            break;
-        case "Cheap":
-            for(i = 0; i < displayedGoogs.length; i++){
-                prices[i] = parseInt($(displayedGoogs[i]).children('.good-price').text().split(' ')[0]) ? parseInt($(displayedGoogs[i]).children('.good-price').text().split(' ')[0]) : parseInt($(displayedGoogs[i]).children().children('.good-price').text().split(' ')[0]);
-            }
-            prices.sort(function(a, b){return a - b});
-            for(i = 0; i < displayedGoogs.length; i++){
-                for(j = 0; j < displayedGoogs.length; j++){
-                    if(prices[i] == parseInt($(displayedGoogs[j]).children('.good-price').text().split(' ')[0]) || prices[i] == parseInt($(displayedGoogs[j]).children().children('.good-price').text().split(' ')[0])){
-                        $(displayedGoogs[j]).appendTo('#goods');
-                    }
-                }
-            }
-            break;
-        case 'No sorting':
-            for(i  = 0; i < displayedGoogs.length; i++){
-                $(displayedGoogs[i]).appendTo('#goods');
-            }
-    }
-}
-
 $('main').delegate('.dropdown li', 'click', function () {
     if ($(this).parent().parent().children('p').text() != $(this).text()) {
         $(this).parent().parent().children('p').text($(this).text());
-        if (parseInt($(this).text())) {
-            leaveGoods($(this).text());
-            sortGoods($("#dropdown-container-sorting").text())
-        } else {
-            leaveGoods($("#dropdown-container-amount").text());
-            sortGoods($(this).text());
-        }
+        sendFilters();
     }
 })
-
-if ($('#goods').length) {
-    $('<section id="goods-filters"><div><div><i class="fal fa-sort-amount-up"></i><p>Sort by:</p></div><div class="dropdown-container"><p id="dropdown-container-sorting">No sorting</p><ul class="dropdown"><li>No sorting</li><li>A - Z</li><li>Z - A</li><li>Expensive</li><li>Cheap</li></ul></div></div><div><div><p>Per page: </p></div><div class="dropdown-container" id="goods-number"><p id="dropdown-container-amount">12</p><ul class="dropdown"><li>6</li><li>12</li><li>24</li><li>36</li></ul></div></div></section>').prependTo('#main');
-}
 
 $('<i class="fas fa-chevron-down more"></i>').insertAfter('.filter-header-wrapper');
 
@@ -148,8 +52,7 @@ $("#slider-range").slider({
         });
     })
 
-$('#filters-submit').click(function(e){
-    e.preventDefault();
+function sendFilters(){
     let dataString = $('#filters').serializeArray();
     let data = {};
     // ищет разделы в фильтрах
@@ -173,23 +76,50 @@ $('#filters-submit').click(function(e){
             delete data[key];
         }
     }
-        $.ajax({
-            url: '/shop/ajaxFilters/',
-            data: {
-                data: JSON.stringify(data).toLowerCase(),
-            },
-            type: 'GET',
-            success: function (res) {
-                if (res.length > 0) {
-                    $('#goods').html(res);
-                } else {
-                    $('#goods').html('<h2>Sorry, no such products</h2>');
-                }
-            },
-            error: function () {
-                $('#goods').html('<h2>Sorry, something gone wrong</h2>');
+    data.sort = {};
+    data.sort.limit = $('#dropdown-container-amount').text();
+    if($('#dropdown-container-sorting').text() != 'No sorting'){
+        switch($('#dropdown-container-sorting').text()){
+            case 'A - Z':{
+                data.sort.order = 'ASC/name';
+                break;
             }
-        })
+            case 'Z - A':{
+                data.sort.order = 'DESC/name';
+                break;
+            }
+            case 'Expensive':{
+                data.sort.order = 'DESC/price';
+                break;
+            }
+            case 'Cheap':{
+                data.sort.order = 'ASC/price';
+                break;
+            }
+        }
+    }
+    $.ajax({
+        url: '/shop/ajaxFilters/',
+        data: {
+            data: JSON.stringify(data).toLowerCase(),
+        },
+        type: 'GET',
+        success: function (res) {
+            if (res.length > 0) {
+                $('#goods').html(res);
+            } else {
+                $('#goods').html('<h2>Sorry, no such products</h2>');
+            }
+        },
+        error: function () {
+            $('#goods').html('<h2>Sorry, something gone wrong</h2>');
+        }
+    })
+}
+
+$('#filters-submit').click(function(e){
+    e.preventDefault();
+    sendFilters();
 })
 
 $('#aside-buttons button:first-child').click(function(e){

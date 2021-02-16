@@ -52,11 +52,15 @@ class Shop extends \core\Controller{
             $key_changed = str_replace('-', '_', $key);
             array_push($columns, $key_changed);
             $ar = get_object_vars($value);
-            if($key_changed != "price"){
+            if($key_changed != "price" && $key_changed != "sort"){
                 foreach($ar as $k => $val){
                     $values[$key_changed][] = str_replace('_', ' ', $k);
                 }
-            }else{
+            }else if($key_changed == "sort"){
+                foreach($ar as $k => $val){
+                    $values[$k][] = $val;
+                }
+            }else if($key_changed == "price"){
                 if($ar['min-price']*1 < $ar['max-price'] * 1) {
                     $values['price'] = [$ar['min-price'], $ar['max-price']];
                 }else{
