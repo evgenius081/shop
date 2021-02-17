@@ -6,12 +6,30 @@ class Shop extends \core\Controller{
 
     public function index(){
         $shop = new \core\Models\Shop();
-        $products = $shop->getSomeProducts(12);
+        $products = $shop->getSomeProducts(6);
+        $pagesNumber = array_splice($products, -1);
         $chosenIDs = $this->getChosenProductsIDs();
         $cartIDs = $this->getCartProductsIDs();
-        $filters = $this->getFilters();
+        $filtersWithAdd = $this->getFilters();
+        $filters = array_splice($filtersWithAdd, 0, count($filtersWithAdd) - 1);
         $text = $this->view('parts/prod', ['0' => $products, 'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
-        $this->view('shop', ['products' => $text, 'filters' => $filters]);
+        if($pagesNumber['total'] > 6){
+            $pagination = $this->view('parts/pagination', ['pages_number' => $pagesNumber, 'page' => 1, 'skip' => 6], false);
+        }
+        $this->view('shop', ['products' => $text, 'filters' => $filters, 'pagination' => $pagination]);
+    }
+
+    public function page($params){
+        $shop = new \core\Models\Shop();
+        $products = $shop->getSomeProducts(6, $params[0]);
+        $pagesNumber = array_splice($products, -1);
+        $chosenIDs = $this->getChosenProductsIDs();
+        $cartIDs = $this->getCartProductsIDs();
+        $filtersWithAdd = $this->getFilters();
+        $filters = array_splice($filtersWithAdd, 0, count($filtersWithAdd) - 1);
+        $text = $this->view('parts/prod', ['0' => $products, 'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
+        $pagination = $this->view('parts/pagination', ['pages_number' => $pagesNumber, 'page' => $params[0], 'skip' => 6], false);
+        $this->view('shop', ['products' => $text, 'filters' => $filters, 'pagination' => $pagination]);
     }
 
     public function product($params){
@@ -52,11 +70,11 @@ class Shop extends \core\Controller{
             $key_changed = str_replace('-', '_', $key);
             array_push($columns, $key_changed);
             $ar = get_object_vars($value);
-            if($key_changed != "price" && $key_changed != "sort"){
+            if($key_changed != "price" && $key_changed != "sort" && $key_changed != "page"){
                 foreach($ar as $k => $val){
                     $values[$key_changed][] = str_replace('_', ' ', $k);
                 }
-            }else if($key_changed == "sort"){
+            }else if($key_changed == "sort" || $key_changed == "page"){
                 foreach($ar as $k => $val){
                     $values[$k][] = $val;
                 }
@@ -72,9 +90,14 @@ class Shop extends \core\Controller{
             }
         }
         $products = $shop->getProductsByFilters($columns, $values);
+        $pagesNumber = array_splice($products, -1);
         $chosenIDs = $this->getChosenProductsIDs();
         $cartIDs = $this->getCartProductsIDs();
-        echo $this->view('parts/prod', ['0' => $products, 'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
+        $text = $this->view('parts/prod', ['0' => $products, 'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
+        if($pagesNumber['total'] > $values['limit'][0]){
+            $text .= $this->view('parts/pagination', ['pages_number' => $pagesNumber, 'page' => isset($values['number']['0'])?$values['number']['0']:$values['current'][0], 'skip' => $values['limit'][0]], false);
+        }
+        echo $text;
     }
 
     public function ajaxAddToChosen(){

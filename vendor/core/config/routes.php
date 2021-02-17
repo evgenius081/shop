@@ -1,6 +1,7 @@
 <?php
 return [
     '/' => 'Shop@index',
+    '/page/{i}/' => 'Shop@page',
     '/about/' => 'Main@about',
     '/cabinet/' => 'USer@cabinet',
     '/contacts/' => 'Main@contacts',

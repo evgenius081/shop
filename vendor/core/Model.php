@@ -36,6 +36,7 @@ class Model{
     {
         $stm = mysqli_query($this->db, $sql);
         $result = mysqli_fetch_all($stm, MYSQLI_ASSOC);
+        //echo $sql;
         return $result;
     }
 
@@ -81,7 +82,8 @@ class Model{
                         $sort = explode('/', $params['order'][0]);
                         $this->where .= " ORDER BY ".$sort[1].' '.$sort[0];
                     }
-                    $this->where .= ' LIMIT '.$params['limit'][0];
+                }else if($value == 'page'){
+                    $this->where = substr($this->where, 0, -4);
                 }else{
                     if(count(array_filter(array_keys($params), 'is_string')) > 0){
                         for($i = 0; $i< count($params[$value]); $i++) {
@@ -112,16 +114,20 @@ class Model{
 
     public function getSome($amount = 0, $page = 0){
         $sql = 'SELECT '.$this->col.' FROM '. $this->table;
+        $all = 0;
         if($this->where){
             $sql .=  $this->where;
         }
         if($amount){
             $sql .= " LIMIT ".$amount;
+            $all = count($this->query('SELECT id FROM '.$this->table.$this->where));
         }
         if($page){
             $sql .= " OFFSET ". (($page - 1) * $amount);
         }
-        return $this->query($sql);
+        $results = $this->query($sql);
+        $results['total'] = $all;
+        return $results;
     }
 
     public function delete(){
@@ -146,6 +152,10 @@ class Model{
         $sql .= '")';
         $stm = mysqli_query($this->db, $sql);
         return mysqli_insert_id($this->db);
+    }
+
+    public function getAllResultsNumber(){
+
     }
 
     public function getOne()

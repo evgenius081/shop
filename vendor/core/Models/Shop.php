@@ -9,15 +9,15 @@ class Shop extends \core\Model{
         return $product;
     }
 
-    public function getSomeProducts($amount){
+    public function getSomeProducts($amount, $page= 0){
         $db = $this->setInstance();
-        $products = $db->table('products_en')->from("*")->getSome($amount);
+        $products = $db->table('products_en')->from("*")->getSome($amount, $page);
         return $products;
     }
 
     public function getProductsByFilters($columns, $values){
         $db = $this->setInstance();
-        $products = $db->table('products_en')->where($columns, "%", $values)->getSome();
+        $products = $db->table('products_en')->where($columns, "%", $values)->getSome($values['limit'][0], isset($values['number']['0'])?$values['number']['0']:$values['current'][0]);
         return $products;
     }
 

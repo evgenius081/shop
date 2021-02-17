@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="57a35274-641d-4406-b0af-81808d8d65d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/vendor/core/views/parts/pagination.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/shop.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/shop.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/shop.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/shop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/slider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/core/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/Controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/core/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/Models/Shop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/core/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/View.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/core/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/core/controller/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/controller/Shop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/core/views/parts/prod.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/views/parts/prod.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/core/views/shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/views/shop.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +74,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dev-wai-copy" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
@@ -76,26 +101,37 @@
       <workItem from="1612636852233" duration="29544000" />
       <workItem from="1612870713121" duration="39869000" />
       <workItem from="1613205707103" duration="42383000" />
-      <workItem from="1613465789227" duration="14472000" />
+      <workItem from="1613465789227" duration="25826000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="361" y="110" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611578997023">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="361" y="110" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.40.1536.824@0.40.1536.824" timestamp="1611578997023" />
-    <state x="549" y="207" key="FileChooserDialogImpl" timestamp="1612886207181">
+    <state x="549" y="207" key="FileChooserDialogImpl" timestamp="1613571294320">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="549" y="207" key="FileChooserDialogImpl/0.40.1536.824@0.40.1536.824" timestamp="1612886207181" />
-    <state x="604" y="375" key="NewPhpFileDialog" timestamp="1613152461298">
+    <state x="549" y="207" key="FileChooserDialogImpl/0.40.1536.824@0.40.1536.824" timestamp="1613571294320" />
+    <state x="604" y="375" key="NewPhpFileDialog" timestamp="1613571271425">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="604" y="375" key="NewPhpFileDialog/0.40.1536.824@0.40.1536.824" timestamp="1613152461298" />
+    <state x="604" y="375" key="NewPhpFileDialog/0.40.1536.824@0.40.1536.824" timestamp="1613571271425" />
     <state x="277" y="97" key="SettingsEditor" timestamp="1612558935106">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
@@ -108,9 +144,9 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="425" y="207" key="run.anything.popup/0.40.1536.824@0.40.1536.824" timestamp="1613498073236" />
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1613500878856">
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1613570250672">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.40.1536.824@0.40.1536.824" timestamp="1613500878856" />
+    <state x="431" y="185" width="672" height="678" key="search.everywhere.popup/0.40.1536.824@0.40.1536.824" timestamp="1613570250672" />
   </component>
 </project>

@@ -24,7 +24,7 @@ class View
 
     public function display($view_name, $display = true){
         if($display){
-            if($view_name != 'parts/prod' && $view_name != 'parts/cart'){
+            if($view_name != 'parts/prod' && $view_name != 'parts/cart' && $view_name != 'parts/pagination'){
                 include '../vendor/core/views/parts/header.php';
                 include $this->path.$view_name.'.php';
                 include '../vendor/core/views/parts/footer.php';

@@ -4,7 +4,7 @@
     <aside>
         <h2>Filters</h2>
         <section id="filter-container">
-            <form action="#" id="filters">
+            <form id="filters">
                 <? foreach($this->var['filters'] as $filter){
                     if($filter['name'] != 'price' && $filter['name'] != 'old_price' && $filter['name'] != 'manufacturer' && $filter['name'] != 'manufacturer_countries'){
                     ?>
@@ -97,7 +97,7 @@
                         <p>Per page: </p>
                     </div>
                     <div class="dropdown-container" id="goods-number">
-                        <p id="dropdown-container-amount">12</p>
+                        <p id="dropdown-container-amount">6</p>
                         <ul class="dropdown">
                             <li>6</li>
                             <li>12</li>
@@ -110,5 +110,6 @@
         </section>
         <section id="goods">
             <?= (isset($this->var['products']) && $this->var['products'] != '')  ? $this->var['products'] : ' <h2>Sorry, something gone wrong</h2>'?>
+            <?= isset($this->var['pagination']) ? $this->var['pagination']: ''?>
         </section>
     </main>

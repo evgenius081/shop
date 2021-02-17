@@ -52,7 +52,7 @@ $("#slider-range").slider({
         });
     })
 
-function sendFilters(){
+function sendFilters(pageNumber = 0){
     let dataString = $('#filters').serializeArray();
     let data = {};
     // ищет разделы в фильтрах
@@ -98,6 +98,13 @@ function sendFilters(){
             }
         }
     }
+    if($('#pagination').length){
+        data.page = {};
+        data.page.current = parseInt($('.current').text());
+        if(pageNumber != 0){
+            data.page.number = pageNumber;
+        }
+    }
     $.ajax({
         url: '/shop/ajaxFilters/',
         data: {
@@ -109,6 +116,9 @@ function sendFilters(){
                 $('#goods').html(res);
             } else {
                 $('#goods').html('<h2>Sorry, no such products</h2>');
+                if($('#pagination').length){
+                    $('#pagination').remove();
+                }
             }
         },
         error: function () {
@@ -137,4 +147,13 @@ $('#aside-buttons button:first-child').click(function(e){
     });
     $("#min-amount").val($('#min-amount').prop('min'));
     $("#max-amount").val($('#max-amount').prop('max'));
+})
+
+$('body').on('click', '.page-numbers', function(e){
+    e.preventDefault();
+    if($(e.target).data('page') != undefined){
+        sendFilters($(e.target).data('page'));
+    }else{
+        sendFilters($(e.target).parent().data('page'));
+    }
 })

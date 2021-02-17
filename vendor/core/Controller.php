@@ -24,8 +24,12 @@ class Controller
 
     public function buffer($view_name, $params){
         ob_start();
-        foreach($params['0'] as $element){
-            $this->view->assign('0', $element);
+        if(isset($params['0'])){
+            foreach($params['0'] as $element){
+                $this->view->assign('0', $element);
+                $this->view->display($view_name, false);
+            }
+        }else if(isset($params['pages_number'])){
             $this->view->display($view_name, false);
         }
         $text = ob_get_contents();
