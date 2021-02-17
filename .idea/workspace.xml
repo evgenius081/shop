@@ -20,18 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57a35274-641d-4406-b0af-81808d8d65d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/vendor/core/views/parts/pagination.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/search.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/core/views/parts/mini_prod.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/core/views/search.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/shop.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/shop.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/search.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/search.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/shop.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/shop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/slider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/core/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/Model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/core/Models/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/Models/Shop.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/core/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/View.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/core/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/core/controller/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/controller/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/core/views/parts/prod.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/views/parts/prod.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/core/views/parts/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/views/parts/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/core/views/shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/core/views/shop.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +103,7 @@
       <workItem from="1612636852233" duration="29544000" />
       <workItem from="1612870713121" duration="39869000" />
       <workItem from="1613205707103" duration="42383000" />
-      <workItem from="1613465789227" duration="25826000" />
+      <workItem from="1613465789227" duration="39612000" />
     </task>
     <servers />
   </component>
@@ -128,10 +130,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="549" y="207" key="FileChooserDialogImpl/0.40.1536.824@0.40.1536.824" timestamp="1613571294320" />
-    <state x="604" y="375" key="NewPhpFileDialog" timestamp="1613571271425">
+    <state x="604" y="375" key="NewPhpFileDialog" timestamp="1613595844517">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="604" y="375" key="NewPhpFileDialog/0.40.1536.824@0.40.1536.824" timestamp="1613571271425" />
+    <state x="604" y="375" key="NewPhpFileDialog/0.40.1536.824@0.40.1536.824" timestamp="1613595844517" />
     <state x="277" y="97" key="SettingsEditor" timestamp="1612558935106">
       <screen x="0" y="40" width="1536" height="824" />
     </state>

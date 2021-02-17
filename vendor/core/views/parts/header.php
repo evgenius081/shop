@@ -71,11 +71,14 @@
             <li class="top-nav-menu-item"<?= $this->var['view_name'] == 'contacts' ? 'id="actual-page"' : "" ?>>
                 <a href="/contacts">Contacts</a>
             </li>
+            <li class="top-nav-menu-item" id="search">
+                <button class="search-button"><i class="fal fa-search fa-2x"></i></button>
+            </li>
             <li class="top-nav-menu-item" id="shopping-cart">
-                <a id="open-shopping-cart" href=""><i class="fal fa-shopping-cart fa-2x"></i></a>
+                <button id="open-shopping-cart"><i class="fal fa-shopping-cart fa-2x"></i></button>
             </li>
             <li class='top-nav-menu-item login' id='login'>
-                <a href=''><i class='<?= isset($_SESSION['token']) ? 'fas' : 'fal'?> fa-user'></i></a>
+                <button><i class='<?= isset($_SESSION['token']) ? 'fas' : 'fal'?> fa-user'></i></button>
                 <div id="user-modal" class="disactive-modal">
                     <?= isset($_SESSION['token']) ? '<a href="/cabinet">Cabinet</a><a href="/logout">Logout</a>' : '<a href="/login">Login</a>' ?>
                 </div>

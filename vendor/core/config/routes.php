@@ -1,7 +1,7 @@
 <?php
 return [
     '/' => 'Shop@index',
-    '/page/{i}/' => 'Shop@page',
+    '/page/{i}' => 'Shop@page',
     '/about/' => 'Main@about',
     '/cabinet/' => 'USer@cabinet',
     '/contacts/' => 'Main@contacts',
@@ -16,4 +16,7 @@ return [
     '/shop/openCart/' => 'Shop@openCart',
     '/shop/clearCart/' => 'Shop@clearCart',
     '/shop/ajaxDeleteFromCart/' => 'Shop@ajaxDeleteFromCart',
+    '/shop/ajaxSearch/' => 'Shop@ajaxSearch',
+    '/search/{s}' => 'Shop@search',
+    '/shop/ajaxSearchFilters/' => 'Shop@ajaxSearchFilters'
 ];

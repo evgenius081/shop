@@ -1,71 +1,74 @@
-$('input[name="search-input"]').keyup(function(e){
-    let name = $(this).val().toLowerCase();
-    if($(this).val().length > 0) {
-        $.ajax({
-            url: '/stock/ajaxSearchByTitle',
-            data: {
-                name: name
-            },
-            type: 'GET',
-            success: function (res) {
-                if (res.length > 0) {
-                    res = res.substring(0, res.length - 1);
-                    $('#stock-gallery-container').html(res);
-                    $('#subm').css('display', 'block');
-                    $('#stock-pagination').css("display", 'none');
-                } else {
-                    $('#stock-gallery-container').html('<h2>Sorry, nothing</h2>');
-                    $('#subm').css('display', 'none');
-                    $('#stock-pagination').css("display", 'none');
-                }
-            }, error: function () {
-                $('#stock-gallery-container').html('<h2>Sorry, something gone wrong</h2>');
-                $('#stock-pagination').css("display", 'none');
-            }
-        })
-    }else{
-        getAll();
+$('main').delegate('.dropdown li', 'click', function () {
+    if ($(this).parent().parent().children('p').text() != $(this).text()) {
+        $(this).parent().parent().children('p').text($(this).text());
+        sendFilters();
     }
-});
+})
 
-function getAll(){
+function sendFilters(pageNumber = 0){
+    let data = {};
+    data.search = $('#goods').data('search');
+    // ищет разделы в фильтрах
+    data.sort = {};
+    data.sort.limit = $('#dropdown-container-amount').text();
+    if($('#dropdown-container-sorting').text() != 'No sorting'){
+        switch($('#dropdown-container-sorting').text()){
+            case 'A - Z':{
+                data.sort.order = 'ASC/name';
+                break;
+            }
+            case 'Z - A':{
+                data.sort.order = 'DESC/name';
+                break;
+            }
+            case 'Expensive':{
+                data.sort.order = 'DESC/price';
+                break;
+            }
+            case 'Cheap':{
+                data.sort.order = 'ASC/price';
+                break;
+            }
+        }
+    }
+    data.page = {};
+    if($('#pagination').length){
+        if($('.current').length){
+            data.page.current = parseInt($('.current').text());
+        }
+        if(pageNumber != 0){
+            data.page.number = pageNumber;
+        }
+    }else{
+        data.page.current = 1;
+    }
     $.ajax({
-        url: '/stock/ajaxGetAll',
-        data:{
-            page: $('.current').html()
+        url: '/shop/ajaxSearchFilters/',
+        data: {
+            data: JSON.stringify(data).toLowerCase(),
         },
         type: 'GET',
         success: function (res) {
             if (res.length > 0) {
-                res = res.substring(0, res.length - 1);
-                $('#stock-gallery-container').html(res);
-                $('#subm').css('display', 'block');
-                $('#stock-pagination').css("display", 'flex');
+                $('#goods').html(res);
             } else {
-                $('#stock-gallery-container').html('<h2>Sorry, nothing</h2>');
-                $('#stock-pagination').css("display", 'none');
-                $('#subm').css('display', 'none');
+                $('#goods').html('<h2>Sorry, no such products</h2>');
+                if($('#pagination').length){
+                    $('#pagination').remove();
+                }
             }
-        }, error: function () {
-            $('#stock-gallery-container').html('<h2>Sorry, something gone wrong</h2>');
-            $('#stock-pagination').css("display", 'none');
+        },
+        error: function () {
+            $('#goods').html('<h2>Sorry, something gone wrong</h2>');
         }
     })
-
 }
 
-$('#main').click(function(e){
-    if(e.target.className == 'fal fa-heart' || e.target.className == 'fa-heart fas' || e.target.className == 'fa-heart fal'){
-        e.preventDefault();
-        $(e.target).toggleClass('fal fas');
-        if($(e.target).prev().prop('checked') == false){
-            $(e.target).prev().attr('checked' , true);
-        }else{
-            $(e.target).prev().prop('checked' , false);
-        }
+$('body').on('click', '.page-numbers', function(e){
+    e.preventDefault();
+    if($(e.target).data('page') != undefined){
+        sendFilters($(e.target).data('page'));
+    }else{
+        sendFilters($(e.target).parent().data('page'));
     }
 })
-
-$(window).ready(function(){
-    getAll();
-});

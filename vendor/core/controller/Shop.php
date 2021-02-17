@@ -6,29 +6,29 @@ class Shop extends \core\Controller{
 
     public function index(){
         $shop = new \core\Models\Shop();
-        $products = $shop->getSomeProducts(6);
+        $products = $shop->getSomeProducts(12);
         $pagesNumber = array_splice($products, -1);
         $chosenIDs = $this->getChosenProductsIDs();
         $cartIDs = $this->getCartProductsIDs();
         $filtersWithAdd = $this->getFilters();
         $filters = array_splice($filtersWithAdd, 0, count($filtersWithAdd) - 1);
         $text = $this->view('parts/prod', ['0' => $products, 'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
-        if($pagesNumber['total'] > 6){
-            $pagination = $this->view('parts/pagination', ['pages_number' => $pagesNumber, 'page' => 1, 'skip' => 6], false);
+        if($pagesNumber['total'] > 12){
+            $pagination = $this->view('parts/pagination', ['pages_number' => $pagesNumber, 'page' => 1, 'skip' => 12], false);
         }
         $this->view('shop', ['products' => $text, 'filters' => $filters, 'pagination' => $pagination]);
     }
 
     public function page($params){
         $shop = new \core\Models\Shop();
-        $products = $shop->getSomeProducts(6, $params[0]);
+        $products = $shop->getSomeProducts(12, $params[0]);
         $pagesNumber = array_splice($products, -1);
         $chosenIDs = $this->getChosenProductsIDs();
         $cartIDs = $this->getCartProductsIDs();
         $filtersWithAdd = $this->getFilters();
         $filters = array_splice($filtersWithAdd, 0, count($filtersWithAdd) - 1);
         $text = $this->view('parts/prod', ['0' => $products, 'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
-        $pagination = $this->view('parts/pagination', ['pages_number' => $pagesNumber, 'page' => $params[0], 'skip' => 6], false);
+        $pagination = $this->view('parts/pagination', ['pages_number' => $pagesNumber, 'page' => $params[0], 'skip' => 12], false);
         $this->view('shop', ['products' => $text, 'filters' => $filters, 'pagination' => $pagination]);
     }
 
@@ -48,6 +48,34 @@ class Shop extends \core\Controller{
         if(isset($_COOKIE['chosen'])){
             return json_decode($_COOKIE['chosen']);
         }
+    }
+    
+    public function ajaxSearch(){
+        $shop = new \core\Models\Shop();
+        $products = $shop->getProductsByName(json_decode($_GET['data']));
+        array_splice($products, -1);
+        $text = $this->view('parts/mini_prod', ['0' => $products], false);
+        echo $text;
+    }
+    
+    public function search($params){
+        $shop = new \core\Models\Shop();
+        $products = $shop->getProductsByName($params[0]);
+        array_splice($products, -1);
+        $chosenIDs = $this->getChosenProductsIDs();
+        $cartIDs = $this->getCartProductsIDs();
+        $text = $this->view('parts/prod', ['0' => $products,'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
+        $this->view('search', ['products' => $text, 'search' => $params[0]]);
+    }
+
+    public function ajaxSearchFilters(){
+        $shop = new \core\Models\Shop();
+        $products = $shop->getProductsBySearchWithFilters(json_decode($_GET['data'])->search, json_decode($_GET['data'])->sort->order, json_decode($_GET['data'])->sort->limit);
+        array_splice($products, -1);
+        $chosenIDs = $this->getChosenProductsIDs();
+        $cartIDs = $this->getCartProductsIDs();
+        $text = $this->view('parts/prod', ['0' => $products,'chosen_IDs' => $chosenIDs, 'cart_IDs' => $cartIDs], false);
+        echo $text;
     }
 
     public function getCartProductsIDs(){

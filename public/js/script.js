@@ -222,10 +222,67 @@ $(window).load(function() {
         if($('#user-modal').hasClass('active-modal') && !$(e.target).hasClass('fa-user')){
             $('#user-modal').toggleClass('active-modal disactive-modal');
         }
+        if($('#search-container').length && !$(e.target).hasClass('fa-search') && !$(e.target).prop('id').includes('search') ){
+            $('#search-container').remove();
+            if($('#search-results').length){
+                $('#search-results').remove();
+            }
+        }
     })
 
     $('body').on('click', '.modal', function(e){
         $(e.target).parent().remove();
+    })
+
+    $('body').on('click', '#search button', function(){
+        if($('#search-container').length){
+            $('#search-container').remove();
+            if($('#search-results').length){
+                $('#search-results').remove();
+            }
+        }else{
+            $(`
+                <div id="search-container">
+                    <form id="search-form">
+                        <input type="text" name="search-text" id="search-text" placeholder="Type something...">
+                        <button type="submit" id="search-submit">
+                            <i class="fal fa-search fa-2x "></i>
+                        </button>
+                    </form>
+                </div>
+                <div id="search-results"></div>
+`).appendTo('nav');
+            $('#search-results').css('display', 'none');
+        }
+    })
+
+    $('body').on('keyup', '#search-form', function(){
+        if($('#search-text').val().length > 0){
+            $.ajax({
+                url: '/shop/ajaxSearch/',
+                data: {
+                    data : JSON.stringify($('#search-text').val()).toLowerCase(),
+                },
+                type: 'GET',
+                success: function (res) {
+                    if(res.length > 0) {
+                        $('#search-results').html(res);
+                        $('#search-results').css('display', 'block');
+                    }
+                },
+                error: function () {
+                    alert('Something bad happened, I can feel it')
+                }
+            })
+        }
+
+    })
+
+    $('body').on('click', '#search-submit', function(e){
+        e.preventDefault();
+        if($('#search-text').val().length > 0){
+            window.location.href = '/search/' + $('#search-text').val();
+        }
     })
 
     $modals = $('.modal');

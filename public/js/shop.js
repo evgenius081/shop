@@ -98,12 +98,16 @@ function sendFilters(pageNumber = 0){
             }
         }
     }
+    data.page = {};
     if($('#pagination').length){
-        data.page = {};
-        data.page.current = parseInt($('.current').text());
+        if($('.current').length){
+            data.page.current = parseInt($('.current').text());
+        }
         if(pageNumber != 0){
             data.page.number = pageNumber;
         }
+    }else{
+        data.page.current = 1;
     }
     $.ajax({
         url: '/shop/ajaxFilters/',

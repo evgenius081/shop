@@ -97,7 +97,7 @@
                         <p>Per page: </p>
                     </div>
                     <div class="dropdown-container" id="goods-number">
-                        <p id="dropdown-container-amount">6</p>
+                        <p id="dropdown-container-amount">12</p>
                         <ul class="dropdown">
                             <li>6</li>
                             <li>12</li>
